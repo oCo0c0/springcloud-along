@@ -3,9 +3,8 @@ package com.along.product.service.impl;
 import com.along.common.entity.Product;
 import com.along.product.dao.ProductDao;
 import com.along.product.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @Desc
@@ -15,7 +14,7 @@ import javax.annotation.Resource;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Resource
+    @Autowired
     private ProductDao productDao;
 
     @Override
