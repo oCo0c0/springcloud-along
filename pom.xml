@@ -28,6 +28,13 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.1.13.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
@@ -43,4 +50,63 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <resources>
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                &lt;!&ndash; 处理文件时替换文件中的变量 &ndash;&gt;-->
+<!--                <filtering>true</filtering>-->
+<!--                <excludes>-->
+<!--                    &lt;!&ndash; 打包时排除文件，可自行添加test.yml &ndash;&gt;-->
+<!--                    <exclude>bootstrap.yml</exclude>-->
+<!--                    <exclude>bootstrap-dev.yml</exclude>-->
+<!--                </excludes>-->
+<!--            </resource>-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <!-- 打包时所包含得文件 -->
+                <includes>
+                    <include>bootstrap.yml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>sit</id>
+            <properties>
+                <profileActive>sit</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <profileActive>uat</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>pre</id>
+            <properties>
+                <profileActive>pre</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+            </properties>
+        </profile>
+    </profiles>
 </project>
