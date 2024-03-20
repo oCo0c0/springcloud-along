@@ -17,6 +17,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <module>shop-user</module>
         <module>shop_product</module>
         <module>shop-order</module>
+        <module>api-gateway</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
@@ -66,10 +67,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
-                <!-- 打包时所包含得文件 -->
-                <includes>
-                    <include>bootstrap.yml</include>
-                </includes>
             </resource>
         </resources>
     </build>

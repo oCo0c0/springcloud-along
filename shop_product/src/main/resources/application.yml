@@ -1,20 +1,7 @@
 server:
   port: 8081
 spring:
+  profiles:
+    active: @profileActive@
   application:
-    name: service-product
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://150.158.79.228:3306/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
-    username: root
-    password: 113114Wtl.
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 150.158.79.228:8848
-  jpa:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: update
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    name: service-product-${spring.profiles.active}
