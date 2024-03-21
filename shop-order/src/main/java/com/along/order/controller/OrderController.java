@@ -6,6 +6,7 @@ import com.along.common.entity.Product;
 import com.along.order.service.OrderService;
 import com.along.order.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,7 @@ public class OrderController {
     private DiscoveryClient discoveryClient;
     @Resource
     private ProductService productService;
+
 
     // 准备买1件商品
     @GetMapping("/order/prod/{pid}")
