@@ -6,9 +6,18 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 150.158.79.228:8848 #nacos中心地址
+        server-addr: 123.60.142.203:8848 #nacos中心地址
+        username: nacos
+        password: 113114Wtl.
+        namespace: e2c262ce-a2a3-4285-bd18-e8eb36f5daf4
         file-extension: yaml # 配置文件格式
-        shared-dataids: all-service.yaml # 配置要引入的配置
-        refreshable-dataids: all-service.yaml # 配置要实现动态配置刷新的配置
+        shared-configs:
+          - data-id: all-service.yaml # 配置要引入的配置 all-service.yaml
+            group: DEFAULT_GROUP
+            refresh: true # 配置要实现动态配置刷新的配置
+        group: DEFAULT_GROUP
+        refresh-enabled: true
+
       discovery:
-        server-addr: 150.158.79.228:8848
+        server-addr: 123.60.142.203:8848
+        namespace: e2c262ce-a2a3-4285-bd18-e8eb36f5daf4
