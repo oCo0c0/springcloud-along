@@ -6,6 +6,8 @@ spring:
     password: 010701kk
   cloud:
     nacos:
+      username: along
+      password: 113114Wtl.
       discovery:
         server-addr: 123.60.142.203:8848
         namespace: e2c262ce-a2a3-4285-bd18-e8eb36f5daf4

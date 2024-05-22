@@ -1,6 +1,6 @@
 package com.along.gateway.filter;
 
-import com.alibaba.nacos.client.utils.StringUtils;
+import com.alibaba.csp.sentinel.util.StringUtil;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.core.Ordered;
@@ -22,7 +22,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain
             chain) {
         String token = exchange.getRequest().getQueryParams().getFirst("token");
-        if (StringUtils.isBlank(token)) {
+        if (StringUtil.isBlank(token)) {
             System.out.println("鉴权失败");
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();

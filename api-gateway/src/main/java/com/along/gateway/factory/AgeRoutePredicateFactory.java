@@ -1,7 +1,7 @@
 package com.along.gateway.factory;
 
+import com.alibaba.cloud.commons.lang.StringUtils;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.handler.predicate.AbstractRoutePredicateFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
