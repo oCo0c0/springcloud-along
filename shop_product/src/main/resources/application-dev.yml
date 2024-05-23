@@ -1,16 +1,16 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://1.tcp.cpolar.cn:21621/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:mysql://1.tcp.cpolar.cn:21621/springcloud?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: along
     password: 010701kk
   cloud:
     nacos:
-      username: along
-      password: 113114Wtl.
+      username: nacos
+      password: nacos
       discovery:
         server-addr: 123.60.142.203:8848
-        namespace: e2c262ce-a2a3-4285-bd18-e8eb36f5daf4
+        namespace: 4718f507-886e-4404-9c52-f08f714aaf9b
   jpa:
     properties:
       hibernate:
