@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +30,7 @@ import java.util.Random;
 public class OrderController {
 
     @Resource
+    @LoadBalanced
     private RestTemplate restTemplate;
     @Resource
     private OrderService orderService;
@@ -36,13 +39,15 @@ public class OrderController {
     @Resource
     private ProductService productService;
 
+    @Value("${spring.profiles.active}")
+    private String active;
 
     // 准备买1件商品
     @GetMapping("/order/prod/{pid}")
     public Order order(@PathVariable("pid") Integer pid) {
         log.info(">>客户下单，这时候要调用商品微服务查询商品信息");
         // 通过restTemplate调用商品微服务
-        Product product = restTemplate.getForObject("http://localhost:8081/product/" + pid, Product.class);
+        Product product = restTemplate.getForObject("http://127.0.0.1:8081/product/" + pid, Product.class);
         log.info(">>商品信息,查询结果:" + JSON.toJSONString(product));
         Order order = new Order();
         order.setUid(1);
@@ -61,7 +66,7 @@ public class OrderController {
         log.info(">>客户下单，这时候要调用商品微服务查询商品信息");
         // 从nacos中获取服务地址
         ServiceInstance serviceInstance =
-                discoveryClient.getInstances("service-product").get(0);
+                discoveryClient.getInstances("service-product-" + active).get(0);
         String url = serviceInstance.getHost() + ":" +
                 serviceInstance.getPort();
         log.info(">>从nacos中获取到的微服务地址为:" + url);
@@ -111,7 +116,7 @@ public class OrderController {
     public Order getOrderByRibbon(@PathVariable("pid") Integer pid) {
         log.info(">>客户下单，这时候要调用商品微服务查询商品信息");
         // 直接使用微服务名字， 从nacos中获取服务地址
-        String url = "service-product";
+        String url = "service-product-" + active;
         // 通过restTemplate调用商品微服务
         Product product = restTemplate.getForObject(
                 "http://" + url + "/product/" + pid, Product.class);

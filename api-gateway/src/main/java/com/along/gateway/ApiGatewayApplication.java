@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * @Desc
+ * @Desc 网关服务启动类
  * @Author wangtianlong
  * @Date 2024/3/20 11:25
  */
