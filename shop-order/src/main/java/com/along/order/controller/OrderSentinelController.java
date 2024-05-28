@@ -1,5 +1,6 @@
 package com.along.order.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.fastjson.JSON;
 import com.along.common.entity.Order;
 import com.along.common.entity.Product;
@@ -53,6 +54,12 @@ public class OrderSentinelController {
     @RequestMapping("/order/message")
     public String message() {
         return "高并发下的问题测试";
+    }
+
+    @RequestMapping("/order/message3")
+    @SentinelResource("message3") // 注意这里必须使用这个注解标识,热点规则不生效
+    public String message3(String name, Integer age) {
+        return name + age;
     }
 
 }

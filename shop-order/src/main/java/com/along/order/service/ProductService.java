@@ -1,6 +1,8 @@
 package com.along.order.service;
 
 import com.along.common.entity.Product;
+import com.along.order.factory.ProductServiceFallBackFactory;
+import com.along.order.service.impl.ProductServiceFallBack;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Author wangtianlong
  * @Date 2024/3/18 15:53
  */
-@FeignClient("service-product-${spring.profiles.active}") // 声明调用的提供者的name
+@FeignClient(value = "service-product-${spring.profiles.active}",
+        //fallback = ProductServiceFallBack.class,
+        fallbackFactory = ProductServiceFallBackFactory.class)
 public interface ProductService {
 
     // 指定调用提供者的哪个方法

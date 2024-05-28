@@ -24,7 +24,7 @@ public class ProductController {
     @GetMapping("/product/{pid}")
     public Product product(@PathVariable("pid") Integer pid) {
         Product product = productService.findByPid(pid);
-        log.info("查询到商品:" + JSON.toJSONString(product));
+        log.info("查询到商品:{}", JSON.toJSONString(product));
         return product;
     }
 

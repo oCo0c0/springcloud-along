@@ -20,7 +20,3 @@ spring:
       discovery:
         server-addr: 123.60.142.203:8848
         namespace: 4718f507-886e-4404-9c52-f08f714aaf9b
-    sentinel:
-      transport:
-        port: 8179
-        dashboard: localhost:8080
