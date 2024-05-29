@@ -2,15 +2,25 @@ server:
   port: 8071
 spring:
   application:
-    name: service-product
+    name: service-user
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://150.158.79.228:3306/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
-    username: root
-    password: 113114Wtl.
+    url: jdbc:mysql://1.tcp.cpolar.cn:21621/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: along
+    password: 010701kk
   jpa:
     properties:
       hibernate:
         hbm2ddl:
           auto: update
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 123.60.142.203:8848
+        namespace: 4718f507-886e-4404-9c52-f08f714aaf9b
+
+rocketmq:
+  name-server: 123.60.142.203:9876

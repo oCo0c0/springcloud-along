@@ -1,15 +1,14 @@
-package com.along.order.dao;
+package com.along.common.dao;
 
-import com.along.common.entity.Order;
+import com.along.common.entity.TxLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  * @Desc
  * @Author wangtianlong
- * @Date 2024/3/15 17:40
+ * @Date 2024/5/29
  */
 @Repository
-public interface OrderDao extends JpaRepository<Order,Long> {
-
+public interface TxLogDao extends JpaRepository<TxLog, Long> {
 }

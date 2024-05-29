@@ -6,10 +6,10 @@ import com.along.common.entity.Product;
 import com.along.order.service.OrderService;
 import com.along.order.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +30,6 @@ import java.util.Random;
 public class OrderController {
 
     @Resource
-    @LoadBalanced
     private RestTemplate restTemplate;
     @Resource
     private OrderService orderService;
@@ -38,6 +37,8 @@ public class OrderController {
     private DiscoveryClient discoveryClient;
     @Resource
     private ProductService productService;
+    @Resource
+    private RocketMQTemplate rocketMQTemplate;
 
     @Value("${spring.profiles.active}")
     private String active;
@@ -147,6 +148,8 @@ public class OrderController {
         order.setPprice(product.getPprice());
         order.setNumber(1);
         orderService.save(order);
+        // 下单成功之后,将消息放到mq中
+        rocketMQTemplate.convertAndSend("order-topic", order);
         return order;
     }
 
@@ -174,7 +177,7 @@ public class OrderController {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error("异常打印：{}", e.getMessage());
         }
         return order;
     }
