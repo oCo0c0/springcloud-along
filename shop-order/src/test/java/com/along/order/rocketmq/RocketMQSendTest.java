@@ -12,7 +12,7 @@ import org.apache.rocketmq.common.message.Message;
 public class RocketMQSendTest {
     public static void main(String[] args) throws Exception {
         // 1. 创建消息生产者, 指定生产者所属的组名
-        DefaultMQProducer producer = new DefaultMQProducer("");
+        DefaultMQProducer producer = new DefaultMQProducer("ProducerGroupName");
         // 2. 指定Nameserver地址
         producer.setNamesrvAddr("123.60.142.203:9876");
         // 3. 启动生产者
