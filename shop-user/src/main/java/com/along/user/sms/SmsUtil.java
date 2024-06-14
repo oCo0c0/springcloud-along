@@ -14,11 +14,11 @@ import com.aliyuncs.profile.IClientProfile;
  */
 public class SmsUtil {
     // 替换成自己申请的accessKeyId
-    private static String accessKeyId = "LTAIMLlf8NKYXn1M";
+    private static String accessKeyId = "";
     // 替换成自己申请的accessKeySecret
-    private static String accessKeySecret = "hqyW0zTNzeSIFnZhMEkOaZXVVcr3Gj";
-    static final String product = "Dysmsapi";
-    static final String domain = "dysmsapi.aliyuncs.com";
+    private static String accessKeySecret = "";
+    static final String product = "";
+    static final String domain = "";
 
     /**
      * 发送短信
@@ -34,9 +34,9 @@ public class SmsUtil {
             System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
             System.setProperty("sun.net.client.defaultReadTimeout", "10000");
             // 初始化acsClient,暂不支持region化
-            IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou",
+            IClientProfile profile = DefaultProfile.getProfile("",
                     accessKeyId, accessKeySecret);
-            DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
+            DefaultProfile.addEndpoint("", "", product, domain);
             IAcsClient acsClient = new DefaultAcsClient(profile);
             SendSmsRequest request = new SendSmsRequest();
             request.setPhoneNumbers(phoneNumbers);
